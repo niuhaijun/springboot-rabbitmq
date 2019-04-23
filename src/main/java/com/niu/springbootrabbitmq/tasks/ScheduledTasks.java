@@ -6,6 +6,7 @@ import static java.lang.String.format;
 import static java.time.LocalTime.now;
 
 import com.niu.springbootrabbitmq.exchange.direct.DirectProducer;
+import com.niu.springbootrabbitmq.exchange.fanout.FanoutProducer;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.LongStream;
@@ -32,12 +33,27 @@ public class ScheduledTasks {
   @Autowired
   private DirectProducer directProducer;
 
+  @Autowired
+  private FanoutProducer fanoutProducer;
+
   @Scheduled(cron = "0/30 * * * * ?")
   public void sentMessages() {
 
-    directSentMessage();
+    int i = 2;
+    switch (i) {
+      case 1: {
+        directSentMessage();
+        break;
+      }
+      case 2: {
+        fanoutSentMessage();
+        break;
+      }
+      default: {
+        directSentMessage();
+      }
+    }
   }
-
 
   private void directSentMessage() {
 
@@ -45,11 +61,22 @@ public class ScheduledTasks {
     LongStream.range(0, 5)
         .forEach(t -> {
           String routingKey = routingKeys[random.nextInt(routingKeys.length)];
-          String message = format("【这是DirectProducer发送的第%s个消息, 创建消息时间是%s, 路由键是%s】", count.addAndGet(1),
+          String message = format("【这是DirectProducer发送的第%s个消息, 创建消息时间是%s, 路由键是%s】",
+              count.addAndGet(1),
               now(), routingKey);
           directProducer.sendMsg(message, routingKey);
         });
   }
 
+  private void fanoutSentMessage() {
+
+    String routingKey = null;
+    LongStream.range(0, 5)
+        .forEach(t -> {
+          String message = format("【这是FanoutProducer发送的第%s个消息, 创建消息时间是%s, 路由键是%s】",
+              count.addAndGet(1), now(), routingKey);
+          fanoutProducer.sendMsg(message, routingKey);
+        });
+  }
 }
 
