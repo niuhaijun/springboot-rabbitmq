@@ -20,16 +20,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TopicBindingConfig {
 
-  public static final String ROUTING_KEY_A = "topic.exchange to topic.queueA";
-  public static final String ROUTING_KEY_B = "topic.exchange to topic.queueB";
+  public static final String ROUTING_KEY_A = "A.A.TopicExchange to QUEUE_A";
+  public static final String ROUTING_KEY_B = "B.B.TopicExchange to QUEUE_B";
+  public static final String ROUTING_KEY_C = "A.B.TopicExchange to QUEUE_A, QUEUE_B";
+
 
   public static final String BINDING_KEY_A = "A.*.*";
   public static final String BINDING_KEY_B = "*.B.*";
-  public static final String BINDING_KEY_C = "*.*.C";
 
 
   @Bean
-  public Binding directBindingOne(@Qualifier(TOPIC_EXCHANGE) TopicExchange exchange,
+  public Binding topicBindingOne(@Qualifier(TOPIC_EXCHANGE) TopicExchange exchange,
       @Qualifier(QUEUE_A) Queue queue) {
 
     return BindingBuilder.bind(queue)
@@ -38,21 +39,12 @@ public class TopicBindingConfig {
   }
 
   @Bean
-  public Binding directBindingTwo(@Qualifier(TOPIC_EXCHANGE) TopicExchange exchange,
+  public Binding topicRBindingTwo(@Qualifier(TOPIC_EXCHANGE) TopicExchange exchange,
       @Qualifier(QUEUE_B) Queue queue) {
 
     return BindingBuilder.bind(queue)
         .to(exchange)
         .with(BINDING_KEY_B);
-  }
-
-  @Bean
-  public Binding directBindingThree(@Qualifier(TOPIC_EXCHANGE) TopicExchange exchange,
-      @Qualifier(QUEUE_B) Queue queue) {
-
-    return BindingBuilder.bind(queue)
-        .to(exchange)
-        .with(BINDING_KEY_C);
   }
 
 }

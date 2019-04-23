@@ -20,8 +20,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DirectBindingConfig {
 
-  public static final String ROUTING_KEY_A = "direct.exchange to direct.queueA";
-  public static final String ROUTING_KEY_B = "direct.exchange to direct.queueB";
+  public static final String ROUTING_KEY_A = "DirectExchange to queueA";
+  public static final String ROUTING_KEY_B = "DirectExchange to queueB";
 
   public static final String BINDING_KEY_A = ROUTING_KEY_A;
   public static final String BINDING_KEY_B = ROUTING_KEY_B;

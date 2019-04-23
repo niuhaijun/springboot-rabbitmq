@@ -7,6 +7,8 @@ import static java.time.LocalTime.now;
 
 import com.niu.springbootrabbitmq.exchange.direct.DirectProducer;
 import com.niu.springbootrabbitmq.exchange.fanout.FanoutProducer;
+import com.niu.springbootrabbitmq.exchange.topic.TopicBindingConfig;
+import com.niu.springbootrabbitmq.exchange.topic.TopicProducer;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.LongStream;
@@ -36,10 +38,13 @@ public class ScheduledTasks {
   @Autowired
   private FanoutProducer fanoutProducer;
 
+  @Autowired
+  private TopicProducer topicProducer;
+
   @Scheduled(cron = "0/30 * * * * ?")
   public void sentMessages() {
 
-    int i = 2;
+    int i = 3;
     switch (i) {
       case 1: {
         directSentMessage();
@@ -47,6 +52,10 @@ public class ScheduledTasks {
       }
       case 2: {
         fanoutSentMessage();
+        break;
+      }
+      case 3: {
+        topicSentMessage();
         break;
       }
       default: {
@@ -75,6 +84,19 @@ public class ScheduledTasks {
           String message = format("【这是FanoutProducer发送的第%s个消息, 创建消息时间是%s, 路由键是%s】",
               count.addAndGet(1), now(), routingKey);
           fanoutProducer.sendMsg(message, routingKey);
+        });
+  }
+
+  private void topicSentMessage() {
+
+    String[] routingKeys = {TopicBindingConfig.ROUTING_KEY_A, TopicBindingConfig.ROUTING_KEY_B,
+        TopicBindingConfig.ROUTING_KEY_C};
+    LongStream.range(0, 5)
+        .forEach(t -> {
+          String routingKey = routingKeys[random.nextInt(routingKeys.length)];
+          String message = format("【这是TopicProducer发送的第%s个消息, 创建消息时间是%s, 路由键是%s】",
+              count.addAndGet(1), now(), routingKey);
+          topicProducer.sendMsg(message, routingKey);
         });
   }
 }
