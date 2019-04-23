@@ -23,7 +23,7 @@ public class TopicExchangeConfig {
     Map<String, Object> arguments = new HashMap<>();
     arguments.put("交换器类型", "话题交换器");
 
-    return new TopicExchange(TOPIC_EXCHANGE, durable, autoDelete, null);
+    return new TopicExchange(TOPIC_EXCHANGE, durable, autoDelete, arguments);
   }
 
 }

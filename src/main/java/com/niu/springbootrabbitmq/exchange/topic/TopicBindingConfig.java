@@ -20,8 +20,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TopicBindingConfig {
 
-  public static final String ROUTING_KEY_A = "direct.exchange to direct.queueA";
-  public static final String ROUTING_KEY_B = "direct.exchange to direct.queueB";
+  public static final String ROUTING_KEY_A = "topic.exchange to topic.queueA";
+  public static final String ROUTING_KEY_B = "topic.exchange to topic.queueB";
 
   public static final String BINDING_KEY_A = "A.*.*";
   public static final String BINDING_KEY_B = "*.B.*";
@@ -34,7 +34,7 @@ public class TopicBindingConfig {
 
     return BindingBuilder.bind(queue)
         .to(exchange)
-        .with(ROUTING_KEY_A);
+        .with(BINDING_KEY_A);
   }
 
   @Bean
@@ -43,7 +43,7 @@ public class TopicBindingConfig {
 
     return BindingBuilder.bind(queue)
         .to(exchange)
-        .with(ROUTING_KEY_B);
+        .with(BINDING_KEY_B);
   }
 
   @Bean
@@ -52,7 +52,7 @@ public class TopicBindingConfig {
 
     return BindingBuilder.bind(queue)
         .to(exchange)
-        .with(ROUTING_KEY_B);
+        .with(BINDING_KEY_C);
   }
 
 }

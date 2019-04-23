@@ -23,12 +23,6 @@ public class TopicProducer {
 
   private RabbitTemplate rabbitTemplate;
 
-  /**
-   * 由于rabbitTemplate的scope属性设置为
-   * ConfigurableBeanFactory.SCOPE_PROTOTYPE，所以不能自动注入
-   *
-   * 构造方法注入rabbitTemplate。rabbitTemplate如果为单例的话，那回调就是最后设置的内容
-   */
   @Autowired
   public TopicProducer(RabbitTemplate rabbitTemplate) {
 

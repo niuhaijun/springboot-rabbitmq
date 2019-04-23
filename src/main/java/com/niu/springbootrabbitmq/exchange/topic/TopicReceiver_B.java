@@ -1,7 +1,7 @@
 package com.niu.springbootrabbitmq.exchange.topic;
 
-import static com.niu.springbootrabbitmq.exchange.direct.DirectQueueConfig.QUEUE_A;
-import static com.niu.springbootrabbitmq.exchange.direct.DirectQueueConfig.QUEUE_B;
+
+import static com.niu.springbootrabbitmq.exchange.topic.TopicQueueConfig.QUEUE_B;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @date 2019-01-22 23:49
  */
 @Component
-@RabbitListener(queues = {QUEUE_B, QUEUE_A})
+@RabbitListener(queues = {QUEUE_B})
 public class TopicReceiver_B {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -22,6 +22,6 @@ public class TopicReceiver_B {
   @RabbitHandler
   public void process(String content) {
 
-    logger.info("Receiver_B 从 【QUEUE_A | QUEUE_B】 中接收到的信息是--> {}", content);
+    logger.info("Receiver_B 从 QUEUE_B 中接收到的信息是--> {}", content);
   }
 }
