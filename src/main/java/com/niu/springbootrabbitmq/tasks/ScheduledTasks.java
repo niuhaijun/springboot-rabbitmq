@@ -62,15 +62,14 @@ public class ScheduledTasks {
         .forEach(t -> {
           String routingKey = routingKeys[random.nextInt(routingKeys.length)];
           String message = format("【这是DirectProducer发送的第%s个消息, 创建消息时间是%s, 路由键是%s】",
-              count.addAndGet(1),
-              now(), routingKey);
+              count.addAndGet(1), now(), routingKey);
           directProducer.sendMsg(message, routingKey);
         });
   }
 
   private void fanoutSentMessage() {
 
-    String routingKey = null;
+    final String routingKey = "xxx";
     LongStream.range(0, 5)
         .forEach(t -> {
           String message = format("【这是FanoutProducer发送的第%s个消息, 创建消息时间是%s, 路由键是%s】",

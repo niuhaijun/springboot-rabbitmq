@@ -23,22 +23,21 @@ public class DirectBindingConfig {
   public static final String ROUTING_KEY_A = "direct.exchange to direct.queueA";
   public static final String ROUTING_KEY_B = "direct.exchange to direct.queueB";
 
+  public static final String BINDING_KEY_A = ROUTING_KEY_A;
+  public static final String BINDING_KEY_B = ROUTING_KEY_B;
+
   @Bean
   public Binding directBindingOne(@Qualifier(DIRECT_EXCHANGE) DirectExchange exchange,
       @Qualifier(QUEUE_A) Queue queue) {
 
-    return BindingBuilder.bind(queue)
-        .to(exchange)
-        .with(ROUTING_KEY_A);
+    return BindingBuilder.bind(queue).to(exchange).with(BINDING_KEY_A);
   }
 
   @Bean
   public Binding directBindingTwo(@Qualifier(DIRECT_EXCHANGE) DirectExchange exchange,
       @Qualifier(QUEUE_B) Queue queue) {
 
-    return BindingBuilder.bind(queue)
-        .to(exchange)
-        .with(ROUTING_KEY_B);
+    return BindingBuilder.bind(queue).to(exchange).with(BINDING_KEY_B);
   }
 
 }
