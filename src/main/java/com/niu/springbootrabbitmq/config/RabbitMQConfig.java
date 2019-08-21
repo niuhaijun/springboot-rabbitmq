@@ -2,10 +2,12 @@ package com.niu.springbootrabbitmq.config;
 
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -45,13 +47,10 @@ public class RabbitMQConfig {
   private Boolean publisherConfirms;
   @Value("${spring.rabbitmq.publisher-returns}")
   private Boolean publisherReturns;
-
   @Value("${spring.rabbitmq.template.mandatory}")
   private Boolean mandatory;
 
-  public static final String CONNECTION_FACTORY = "CONNECTION_FACTORY";
-
-  @Bean(name = CONNECTION_FACTORY)
+  @Bean
   public ConnectionFactory connectionFactory() {
 
 //    CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
@@ -90,5 +89,18 @@ public class RabbitMQConfig {
     rabbitTemplate.setMandatory(mandatory);
 
     return rabbitTemplate;
+  }
+
+  @Bean("containerFactory")
+  public SimpleRabbitListenerContainerFactory containerFactory(
+      SimpleRabbitListenerContainerFactoryConfigurer configurer,
+      ConnectionFactory connectionFactory) {
+
+    SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory = new SimpleRabbitListenerContainerFactory();
+    simpleRabbitListenerContainerFactory.setPrefetchCount(5);
+    simpleRabbitListenerContainerFactory.setConcurrentConsumers(3);
+    simpleRabbitListenerContainerFactory.setMaxConcurrentConsumers(3);
+    configurer.configure(simpleRabbitListenerContainerFactory, connectionFactory);
+    return simpleRabbitListenerContainerFactory;
   }
 }

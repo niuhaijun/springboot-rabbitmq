@@ -44,7 +44,7 @@ public class ScheduledTasks {
   @Scheduled(cron = "0/30 * * * * ?")
   public void sentMessages() {
 
-    int i = 3;
+    int i = 1;
     switch (i) {
       case 1: {
         directSentMessage();

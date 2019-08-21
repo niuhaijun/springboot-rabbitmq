@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
  * @date 2019-01-15 16:52
  */
 @Component
-@RabbitListener(queues = {QUEUE_B, QUEUE_A})
+@RabbitListener(queues = {QUEUE_A})
 public class DirectReceiver_A {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
