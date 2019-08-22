@@ -77,6 +77,9 @@ public class RabbitMQConfig {
   }
 
 
+  /**
+   * 消费者并发设置
+   */
   @Bean("containerFactory")
   public SimpleRabbitListenerContainerFactory containerFactory(
       SimpleRabbitListenerContainerFactoryConfigurer configurer , ConnectionFactory connectionFactory){

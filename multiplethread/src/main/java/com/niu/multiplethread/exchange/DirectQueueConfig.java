@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 public class DirectQueueConfig {
 
   public static final String QUEUE_A = "direct.queueA";
-  public static final String QUEUE_B = "direct.queueB";
   private boolean durable = false;
   private boolean autoDelete = true;
   private boolean exclusive = false;
@@ -26,12 +25,4 @@ public class DirectQueueConfig {
     return new Queue(QUEUE_A, durable, exclusive, autoDelete, null);
   }
 
-  /**
-   * 队列B
-   */
-  @Bean(name = QUEUE_B)
-  public Queue queueB() {
-
-    return new Queue(QUEUE_B, durable, exclusive, autoDelete, null);
-  }
 }

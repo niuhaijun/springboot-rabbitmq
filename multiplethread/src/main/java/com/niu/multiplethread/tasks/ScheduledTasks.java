@@ -21,7 +21,7 @@ public class ScheduledTasks {
   @Autowired
   private DirectProducer directProducer;
 
-  @Scheduled(cron = "0/30 * * * * ?")
+  @Scheduled(cron = "0/3 * * * * ?")
   public void sentMessages() {
 
     directSentMessage();
@@ -29,7 +29,7 @@ public class ScheduledTasks {
 
   private void directSentMessage() {
 
-    String[] routingKeys = {DirectBindingConfig.ROUTING_KEY_A, DirectBindingConfig.ROUTING_KEY_B};
+    String[] routingKeys = {DirectBindingConfig.ROUTING_KEY_A};
     LongStream.range(0, 5)
         .forEach(t -> {
           String routingKey = routingKeys[random.nextInt(routingKeys.length)];

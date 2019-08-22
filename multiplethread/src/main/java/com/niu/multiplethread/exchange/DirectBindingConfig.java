@@ -17,10 +17,7 @@ import org.springframework.context.annotation.Configuration;
 public class DirectBindingConfig {
 
   public static final String ROUTING_KEY_A = "DirectExchange to queueA";
-  public static final String ROUTING_KEY_B = "DirectExchange to queueB";
-
   public static final String BINDING_KEY_A = ROUTING_KEY_A;
-  public static final String BINDING_KEY_B = ROUTING_KEY_B;
 
   @Bean
   public Binding directBindingOne(
@@ -28,14 +25,6 @@ public class DirectBindingConfig {
       @Qualifier(DirectQueueConfig.QUEUE_A) Queue queue) {
 
     return BindingBuilder.bind(queue).to(exchange).with(BINDING_KEY_A);
-  }
-
-  @Bean
-  public Binding directBindingTwo(
-      @Qualifier(DirectExchangeConfig.DIRECT_EXCHANGE) DirectExchange exchange,
-      @Qualifier(DirectQueueConfig.QUEUE_B) Queue queue) {
-
-    return BindingBuilder.bind(queue).to(exchange).with(BINDING_KEY_B);
   }
 
 }

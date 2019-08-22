@@ -11,8 +11,7 @@ import org.springframework.stereotype.Component;
  * @date 2019-01-22 23:49
  */
 @Component
-@RabbitListener(queues = DirectQueueConfig.QUEUE_B, containerFactory = "containerFactory")
-
+@RabbitListener(queues = {DirectQueueConfig.QUEUE_A})
 public class DirectReceiver_B {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -20,6 +19,6 @@ public class DirectReceiver_B {
   @RabbitHandler
   public void process(String content) {
 
-    logger.info("Receiver_B 从 QUEUE_B 中接收到的信息是--> {}", content);
+    logger.info("Receiver_B 从 QUEUE_A 中接收到的信息是--> {}", content);
   }
 }
