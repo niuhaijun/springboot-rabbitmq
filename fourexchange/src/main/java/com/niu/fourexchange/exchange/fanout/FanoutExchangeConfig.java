@@ -15,7 +15,7 @@ public class FanoutExchangeConfig {
 
   public static final String FANOUT_EXCHANGE = "fanout.exchange";
   private boolean durable = false;
-  private boolean autoDelete = true;
+  private boolean autoDelete = false;
 
   @Bean(name = FANOUT_EXCHANGE)
   public FanoutExchange fanoutExchange() {

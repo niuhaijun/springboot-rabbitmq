@@ -14,8 +14,8 @@ public class FanoutQueueConfig {
   public static final String QUEUE_A = "fanout.queueA";
   public static final String QUEUE_B = "fanout.queueB";
   private boolean durable = false;
-  private boolean autoDelete = true;
-  private boolean exclusive = true;
+  private boolean autoDelete = false;
+  private boolean exclusive = false;
 
   /**
    * 队列A

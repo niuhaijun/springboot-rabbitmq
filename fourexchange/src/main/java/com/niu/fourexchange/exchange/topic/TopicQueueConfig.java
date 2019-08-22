@@ -14,7 +14,7 @@ public class TopicQueueConfig {
   public static final String QUEUE_A = "topic.queueA";
   public static final String QUEUE_B = "topic.queueB";
   private boolean durable = false;
-  private boolean autoDelete = true;
+  private boolean autoDelete = false;
   private boolean exclusive = false;
 
   /**

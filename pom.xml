@@ -24,6 +24,12 @@
     <java.version>1.8</java.version>
   </properties>
 
+  <modules>
+    <module>fourexchange</module>
+    <module>messageacknowledge</module>
+    <module>multiplethread</module>
+  </modules>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>

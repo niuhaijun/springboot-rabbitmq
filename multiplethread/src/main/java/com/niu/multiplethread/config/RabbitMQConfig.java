@@ -32,14 +32,6 @@ public class RabbitMQConfig {
   private String virtualHost;
 
 
-  @Value("${spring.rabbitmq.publisher-confirms}")
-  private Boolean publisherConfirms;
-  @Value("${spring.rabbitmq.publisher-returns}")
-  private Boolean publisherReturns;
-  @Value("${spring.rabbitmq.template.mandatory}")
-  private Boolean mandatory;
-
-
   @Value("${spring.rabbitmq.listener.concurrency}")
   private Integer concurrency;
   @Value("${spring.rabbitmq.listener.max-concurrency}")
@@ -57,9 +49,6 @@ public class RabbitMQConfig {
     connectionFactory.setUsername(username);
     connectionFactory.setPassword(password);
     connectionFactory.setVirtualHost(virtualHost);
-
-    connectionFactory.setPublisherConfirms(publisherConfirms);
-    connectionFactory.setPublisherReturns(publisherReturns);
 
     return connectionFactory;
   }

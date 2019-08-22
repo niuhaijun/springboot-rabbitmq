@@ -15,7 +15,7 @@ public class TopicExchangeConfig {
 
   public static final String TOPIC_EXCHANGE = "topic.exchange";
   public boolean durable = false;
-  public boolean autoDelete = true;
+  public boolean autoDelete = false;
 
   @Bean(name = TOPIC_EXCHANGE)
   public TopicExchange directExchange() {

@@ -15,7 +15,7 @@ public class DirectExchangeConfig {
 
   public static final String DIRECT_EXCHANGE = "direct.exchange";
   public boolean durable = false;
-  public boolean autoDelete = true;
+  public boolean autoDelete = false;
 
   @Bean(name = DIRECT_EXCHANGE)
   public DirectExchange directExchange() {

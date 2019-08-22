@@ -14,10 +14,7 @@
   <artifactId>multiplethread</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-
   <name>multiplethread</name>
   <description>并发消费</description>
-
-
 
 </project>

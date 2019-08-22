@@ -14,7 +14,6 @@ public class MultiplethreadApplication {
 
     SpringApplication.run(MultiplethreadApplication.class, args);
 
-
     // 防止JVM退出
     new Thread(() -> {
       try {

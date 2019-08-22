@@ -14,7 +14,7 @@ public class DirectQueueConfig {
   public static final String QUEUE_A = "direct.queueA";
   public static final String QUEUE_B = "direct.queueB";
   private boolean durable = false;
-  private boolean autoDelete = true;
+  private boolean autoDelete = false;
   private boolean exclusive = false;
 
   /**
