@@ -97,8 +97,16 @@ public class DirectProducer
   @Override
   public void afterPropertiesSet() throws Exception {
 
-    rabbitTemplate.setMandatory(mandatory);
-    rabbitTemplate.setConfirmCallback(this);
+    /**
+     * 设置消息发送到交换器回调
+     */
+//    rabbitTemplate.setConfirmCallback(this);
+
+    /**
+     * 设置消息没有匹配的队列回调（没有绑定的队列；有绑定的队列但是无匹配的队列）
+     * mandatory参数：only applies if a ReturnCallback had been provided
+     */
     rabbitTemplate.setReturnCallback(this);
+    rabbitTemplate.setMandatory(mandatory);
   }
 }

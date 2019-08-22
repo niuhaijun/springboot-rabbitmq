@@ -44,7 +44,7 @@ public class RabbitMQConfig {
     connectionFactory.setVirtualHost(virtualHost);
 
     // 消息确认设置
-    connectionFactory.setPublisherConfirms(true );
+    connectionFactory.setPublisherConfirms(publisherConfirms );
     connectionFactory.setPublisherReturns(publisherReturns);
 
     return connectionFactory;
