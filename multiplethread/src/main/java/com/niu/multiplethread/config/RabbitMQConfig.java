@@ -73,7 +73,6 @@ public class RabbitMQConfig {
   public RabbitTemplate rabbitTemplate() {
 
     RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
-    rabbitTemplate.setMandatory(mandatory);
     return rabbitTemplate;
   }
 

@@ -63,14 +63,15 @@ public class RabbitMQConfig {
   }
 
   @Bean
+  /**
+   * 必须是prototype类型
+   * 因为要设置回调类，所以应是prototype类型，如果是singleton类型，则回调类为最后一次设置
+   */
   @Scope(SCOPE_PROTOTYPE)
   public RabbitTemplate rabbitTemplate() {
 
     RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
     return rabbitTemplate;
   }
-
-
-
 
 }

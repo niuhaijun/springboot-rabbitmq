@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * 消费者
  */
 @Component
-@RabbitListener(queues = {DirectQueueConfig.QUEUE_A})
+@RabbitListener(queues = {DirectQueueConfig.QUEUE_A}, containerFactory = "containerFactory")
 public class DirectReceiver_A {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
