@@ -20,14 +20,4 @@
   <name>fourexchange</name>
   <description>四种常见的exchange交换器用法</description>
 
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
-
 </project>
