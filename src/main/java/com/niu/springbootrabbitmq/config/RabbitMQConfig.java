@@ -98,8 +98,20 @@ public class RabbitMQConfig {
 
     RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
     rabbitTemplate.setMandatory(mandatory);
-    rabbitTemplate.setConfirmCallback();
-    rabbitTemplate.setReturnCallback();
+
+    /**
+     * https://blog.csdn.net/qq_29663071/article/details/81559032
+     *
+     * 消息发送确认
+     *
+     * ConfirmCallback 消息发送到交换器确认
+     * ReturnCallback  消息发送到队列确认
+     *
+     * 每一个producer获取一个rabbitTemplate，并根据自身的业务特性
+     * 使用不同的确认
+     */
+//    rabbitTemplate.setConfirmCallback(new MyConfirmCallback());
+//    rabbitTemplate.setReturnCallback(new MyReturnCallback());
 
     return rabbitTemplate;
   }
