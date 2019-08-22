@@ -5,6 +5,7 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
@@ -76,14 +77,16 @@ public class RabbitMQConfig {
     return connectionFactory;
   }
 
-//  /**
-//   * ？？？
-//   */
-//  @Bean
-//  public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
-//
-//    return new RabbitAdmin(connectionFactory);
-//  }
+  /**
+   * https://www.jianshu.com/p/e647758a7c50
+   *
+   * 该类封装了对 RabbitMQ 的管理操作
+   */
+  @Bean
+  public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
+
+    return new RabbitAdmin(connectionFactory);
+  }
 
   @Bean
   /**
@@ -95,6 +98,8 @@ public class RabbitMQConfig {
 
     RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
     rabbitTemplate.setMandatory(mandatory);
+    rabbitTemplate.setConfirmCallback();
+    rabbitTemplate.setReturnCallback();
 
     return rabbitTemplate;
   }
