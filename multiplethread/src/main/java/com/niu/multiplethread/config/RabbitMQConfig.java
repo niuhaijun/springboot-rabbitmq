@@ -40,7 +40,6 @@ public class RabbitMQConfig {
   private Integer prefetch;
 
 
-
   @Bean
   public ConnectionFactory connectionFactory() {
 
@@ -54,15 +53,10 @@ public class RabbitMQConfig {
   }
 
   @Bean
-  /**
-   * 必须是prototype类型
-   * 因为要设置回调类，所以应是prototype类型，如果是singleton类型，则回调类为最后一次设置
-   */
   @Scope(SCOPE_PROTOTYPE)
   public RabbitTemplate rabbitTemplate() {
 
-    RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
-    return rabbitTemplate;
+    return new RabbitTemplate(connectionFactory());
   }
 
 
@@ -71,12 +65,14 @@ public class RabbitMQConfig {
    */
   @Bean("containerFactory")
   public SimpleRabbitListenerContainerFactory containerFactory(
-      SimpleRabbitListenerContainerFactoryConfigurer configurer , ConnectionFactory connectionFactory){
+      SimpleRabbitListenerContainerFactoryConfigurer configurer,
+      ConnectionFactory connectionFactory) {
+
     SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory = new SimpleRabbitListenerContainerFactory();
     simpleRabbitListenerContainerFactory.setPrefetchCount(prefetch);
     simpleRabbitListenerContainerFactory.setConcurrentConsumers(concurrency);
     simpleRabbitListenerContainerFactory.setMaxConcurrentConsumers(maxConcurrency);
-    configurer.configure(simpleRabbitListenerContainerFactory,connectionFactory);
+    configurer.configure(simpleRabbitListenerContainerFactory, connectionFactory);
     return simpleRabbitListenerContainerFactory;
   }
 

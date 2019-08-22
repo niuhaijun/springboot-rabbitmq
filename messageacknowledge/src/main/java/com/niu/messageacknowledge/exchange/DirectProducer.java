@@ -100,7 +100,7 @@ public class DirectProducer
     /**
      * 设置消息发送到交换器回调
      */
-//    rabbitTemplate.setConfirmCallback(this);
+    rabbitTemplate.setConfirmCallback(this);
 
     /**
      * 设置消息没有匹配的队列回调（没有绑定的队列；有绑定的队列但是无匹配的队列）
