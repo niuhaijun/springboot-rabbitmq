@@ -50,6 +50,14 @@ public class RabbitMQConfig {
   @Value("${spring.rabbitmq.template.mandatory}")
   private Boolean mandatory;
 
+
+  @Value("${spring.rabbitmq.listener.concurrency}")
+  private int concurrency;
+  @Value("${spring.rabbitmq.listener.max-concurrency}")
+  private int maxConcurrency;
+  @Value("${spring.rabbitmq.listener.prefetch}")
+  private int prefetch;
+
   @Bean
   public ConnectionFactory connectionFactory() {
 
@@ -91,15 +99,20 @@ public class RabbitMQConfig {
     return rabbitTemplate;
   }
 
+  /**
+   * 多线程消费消息
+   *
+   * https://blog.csdn.net/qq_40794266/article/details/86513054
+   */
   @Bean("containerFactory")
   public SimpleRabbitListenerContainerFactory containerFactory(
       SimpleRabbitListenerContainerFactoryConfigurer configurer,
       ConnectionFactory connectionFactory) {
 
     SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory = new SimpleRabbitListenerContainerFactory();
-    simpleRabbitListenerContainerFactory.setPrefetchCount(5);
-    simpleRabbitListenerContainerFactory.setConcurrentConsumers(3);
-    simpleRabbitListenerContainerFactory.setMaxConcurrentConsumers(3);
+    simpleRabbitListenerContainerFactory.setPrefetchCount(prefetch);
+    simpleRabbitListenerContainerFactory.setConcurrentConsumers(concurrency);
+    simpleRabbitListenerContainerFactory.setMaxConcurrentConsumers(maxConcurrency);
     configurer.configure(simpleRabbitListenerContainerFactory, connectionFactory);
     return simpleRabbitListenerContainerFactory;
   }
