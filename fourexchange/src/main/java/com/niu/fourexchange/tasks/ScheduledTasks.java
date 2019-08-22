@@ -37,10 +37,10 @@ public class ScheduledTasks {
   @Autowired
   private TopicProducer topicProducer;
 
-  @Scheduled(cron = "0/30 * * * * ?")
+  @Scheduled(cron = "0/5 * * * * ?")
   public void sentMessages() {
 
-    int i = 3;
+    int i = 1;
     switch (i) {
       case 1: {
         directSentMessage();
