@@ -1,11 +1,10 @@
 package com.niu.messageacknowledge.config;
 
-import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
-
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -45,14 +44,14 @@ public class RabbitMQConfig {
     connectionFactory.setVirtualHost(virtualHost);
 
     // 消息确认设置
-    connectionFactory.setPublisherConfirms(publisherConfirms);
+    connectionFactory.setPublisherConfirms(true );
     connectionFactory.setPublisherReturns(publisherReturns);
 
     return connectionFactory;
   }
 
   @Bean
-  @Scope(SCOPE_PROTOTYPE)
+  @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
   public RabbitTemplate rabbitTemplate() {
 
     return new RabbitTemplate(connectionFactory());

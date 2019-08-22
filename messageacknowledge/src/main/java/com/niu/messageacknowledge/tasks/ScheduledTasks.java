@@ -29,8 +29,8 @@ public class ScheduledTasks {
 
   private void directSentMessage() {
 
-    String[] routingKeys = {DirectBindingConfig.ROUTING_KEY_A};
-    LongStream.range(0, 5)
+    String[] routingKeys = {DirectBindingConfig.ROUTING_KEY_A + "xxx"};
+    LongStream.range(0, 1)
         .forEach(t -> {
           String routingKey = routingKeys[random.nextInt(routingKeys.length)];
           String message = format("【这是DirectProducer发送的第%s个消息, 创建消息时间是%s, 路由键是%s】",
