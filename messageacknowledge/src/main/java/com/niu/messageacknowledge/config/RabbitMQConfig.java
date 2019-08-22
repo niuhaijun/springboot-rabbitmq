@@ -44,10 +44,6 @@ public class RabbitMQConfig {
   private Integer prefetch;
 
 
-  @Value("${spring.rabbitmq.listener.simple.acknowledge-mode}")
-  private String acknowledgeMode;
-
-
   @Bean
   public ConnectionFactory connectionFactory() {
 
