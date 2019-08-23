@@ -1,7 +1,6 @@
-package com.niu.messageacknowledge.config;
+package com.niu.messageacknowledge.exchange;
 
 
-import com.niu.messageacknowledge.exchange.DirectQueueConfig;
 import com.rabbitmq.client.Channel;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
@@ -45,8 +44,8 @@ public class DirectReceiver_C {
         connectionFactory);
     container.setQueues(queue);
     container.setExposeListenerChannel(true);
+    container.setConcurrentConsumers(3);
     container.setMaxConcurrentConsumers(maxConcurrency);
-    container.setConcurrentConsumers(concurrency);
     container.setAcknowledgeMode(AcknowledgeMode.valueOf(acknowledgeMode));
     container.setMessageListener(new ChannelAwareMessageListener() {
       @Override

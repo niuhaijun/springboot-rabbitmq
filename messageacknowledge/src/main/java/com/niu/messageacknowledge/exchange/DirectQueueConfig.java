@@ -1,5 +1,7 @@
 package com.niu.messageacknowledge.exchange;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class DirectQueueConfig {
 
   public static final String QUEUE_A = "direct.queueA";
+  public static final String QUEUE_B = "direct.queueA";
   private boolean durable = false;
   private boolean autoDelete = false;
   private boolean exclusive = false;
@@ -22,7 +25,11 @@ public class DirectQueueConfig {
   @Bean(name = QUEUE_A)
   public Queue queueA() {
 
-    return new Queue(QUEUE_A, durable, exclusive, autoDelete, null);
+    Map<String, Object> arguments = new HashMap<>(2);
+    // 通过队列设置消息的过期时间
+    arguments.put("x-message-ttl", 6 * 1000);
+
+    return new Queue(QUEUE_A, durable, exclusive, autoDelete, arguments);
   }
 
 }

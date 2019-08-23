@@ -4,6 +4,8 @@ package com.niu.messageacknowledge.exchange;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageDeliveryMode;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.InitializingBean;
@@ -43,6 +45,14 @@ public class DirectProducer
     rabbitTemplate.convertAndSend(DirectExchangeConfig.DIRECT_EXCHANGE,
         routingKey,
         content,
+        message -> {
+          MessageProperties messageProperties = message.getMessageProperties();
+          // 设置消息的过期时间
+          messageProperties.setExpiration(5 * 1000 + "");
+          // 设置消息的投递模式2持久化
+          messageProperties.setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+          return message;
+        },
         correlationData);
   }
 

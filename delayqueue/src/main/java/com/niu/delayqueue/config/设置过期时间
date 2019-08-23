@@ -1,0 +1,9 @@
+    rabbitTemplate.convertAndSend(DirectExchangeConfig.DIRECT_EXCHANGE,
+        routingKey,
+        content, message -> {
+          MessageProperties messageProperties = message.getMessageProperties();
+          // 设置消息的过期时间
+          messageProperties.setExpiration(5 * 1000 + "");
+          return message;
+        },
+        correlationData);
