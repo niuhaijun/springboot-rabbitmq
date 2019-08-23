@@ -25,6 +25,7 @@
   </properties>
 
   <modules>
+    <module>delayqueue</module>
     <module>fourexchange</module>
     <module>messageacknowledge</module>
     <module>multiplethread</module>
