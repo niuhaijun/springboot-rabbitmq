@@ -20,7 +20,8 @@ public class DirectReceiver_B {
   @RabbitHandler
   public void process(String content) {
 
-    logger.info("Receiver_B 从 QUEUE_B 中接收到信息的时间是--> {}", LocalDateTime.now());
-    logger.info("Receiver_B 从 QUEUE_B 中接收到的信息是--> {}", content);
+    logger.info("Receiver_B 从 QUEUE_B 中接收到的时间是--> {}, 信息是--> {}",
+        LocalDateTime.now(),
+        content);
   }
 }
