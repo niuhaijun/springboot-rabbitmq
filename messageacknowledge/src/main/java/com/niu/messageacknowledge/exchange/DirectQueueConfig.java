@@ -16,7 +16,7 @@ public class DirectQueueConfig {
   public static final String QUEUE_A = "direct.queueA";
   public static final String QUEUE_B = "direct.queueA";
   private boolean durable = false;
-  private boolean autoDelete = false;
+  private boolean autoDelete = true;
   private boolean exclusive = false;
 
   /**
@@ -28,6 +28,8 @@ public class DirectQueueConfig {
     Map<String, Object> arguments = new HashMap<>(2);
     // 通过队列设置消息的过期时间
     arguments.put("x-message-ttl", 6 * 1000);
+    // 设置队列的过期时间
+    arguments.put("x-expires", 6 * 1000);
 
     return new Queue(QUEUE_A, durable, exclusive, autoDelete, arguments);
   }

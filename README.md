@@ -18,7 +18,7 @@
 * `multiplethread`：设置rabbitmq多线程处理消息
 * `delayqueue`：使用rabbitmq实现延迟队列
 * `messageacknowledge`：使用消息确认机制防止消息丢失
-* `alternateexchange`：使用备份交换器解决消息无法从交换器路由到队列
+* `alternateexchange`：使用备份交换器解决消息无法从交换器路由到队列时的消息丢失
 
 
 ## 参考链接
@@ -48,4 +48,9 @@
 * Map<String, Object> `arguments`: 其他参数设置
   * `x-dead-letter-exchange`：设置队列的`死信交换器`; 
   * `x-dead-letter-routing-key`： 统一设置死信的`Routing Key`; 
-  * `x-message-ttl`: 设置队列的过期时间
+  * `x-message-ttl`: 设置消息的过期时间
+  * `x-expire`：设置队列的过期时间，该参数可以控制队列被自动删除前处于`未使用状态`的时间，`未使用状态`包含以下几个条件
+    * 队列上无消费者
+    * 队列没有被重新声明
+    * 在过期时间段内，未调用过`Basic.Get`命令 
+      
