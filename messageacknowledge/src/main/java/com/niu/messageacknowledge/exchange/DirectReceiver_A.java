@@ -37,7 +37,7 @@ public class DirectReceiver_A {
       try {
         // 处理失败,重新压入MQ
         channel.basicReject(deliveryTag, true);
-        channel.basicNack(deliveryTag, false, true);
+//        channel.basicNack(deliveryTag, false, true);
       }
       catch (IOException e1) {
         e1.printStackTrace();

@@ -68,10 +68,10 @@ public class DirectReceiver_C {
             // 单个拒绝
             channel.basicReject(deliveryTag, true);
             // 批量拒绝
-            channel.basicNack(deliveryTag, false, true);
+//            channel.basicNack(deliveryTag, false, true);
           }
           catch (IOException e1) {
-            log.error("");
+            log.error("发生了异常, 异常信息如下{}", e.getMessage());
           }
         }
       }

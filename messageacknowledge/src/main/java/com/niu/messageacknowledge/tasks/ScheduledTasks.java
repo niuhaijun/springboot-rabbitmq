@@ -29,7 +29,7 @@ public class ScheduledTasks {
 
   private void directSentMessage() {
 
-    String[] routingKeys = {DirectBindingConfig.ROUTING_KEY_A + "无法路由到队列",
+    String[] routingKeys = {DirectBindingConfig.ROUTING_KEY_A + "--无法路由到队列",
         DirectBindingConfig.ROUTING_KEY_A};
     LongStream.range(0, 10)
         .forEach(t -> {
