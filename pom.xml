@@ -25,11 +25,11 @@
   </properties>
 
   <modules>
+    <module>alternateexchange</module>
     <module>delayqueue</module>
     <module>fourexchange</module>
     <module>messageacknowledge</module>
     <module>multiplethread</module>
-    <module>alternateexchange</module>
   </modules>
 
   <dependencies>
