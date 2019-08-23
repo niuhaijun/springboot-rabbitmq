@@ -14,8 +14,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  *
  *
  * 验证消费者确认机制，消息是否重新入队的情况，可尝试
- *
- *
  */
 @SpringBootApplication
 @EnableScheduling

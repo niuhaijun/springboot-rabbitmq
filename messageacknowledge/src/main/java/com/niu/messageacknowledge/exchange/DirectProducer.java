@@ -51,8 +51,7 @@ public class DirectProducer
    * 通过实现ConfirmCallBack接口，消息发送到交换器Exchange后触发回调。
    *
    * 触发回调的条件：
-   *
-   * 使用该功能需要开启确认，spring-boot中配置如下: spring.rabbitmq.publisher-confirms = true
+   *  使用该功能需要开启确认，spring-boot中配置如下: spring.rabbitmq.publisher-confirms = true
    */
   @Override
   public void confirm(CorrelationData
@@ -94,6 +93,11 @@ public class DirectProducer
     log.error("路由键 routingKey : {}", routingKey);
   }
 
+
+  /**
+   * 由于@Value注入的时间晚于构造函数@Autowired注入的时间，
+   * 所以需要采用该方式初始化bean
+   */
   @Override
   public void afterPropertiesSet() throws Exception {
 
