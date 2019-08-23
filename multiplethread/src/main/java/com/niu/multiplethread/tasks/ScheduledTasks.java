@@ -21,7 +21,7 @@ public class ScheduledTasks {
   @Autowired
   private DirectProducer directProducer;
 
-  @Scheduled(cron = "0/3 * * * * ?")
+  @Scheduled(cron = "0/30 * * * * ?")
   public void sentMessages() {
 
     directSentMessage();
