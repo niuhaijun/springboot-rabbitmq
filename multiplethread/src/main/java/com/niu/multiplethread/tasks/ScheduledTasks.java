@@ -21,7 +21,7 @@ public class ScheduledTasks {
   @Autowired
   private DirectProducer directProducer;
 
-  @Scheduled(cron = "0/30 * * * * ?")
+  @Scheduled(cron = "0/10 * * * * ?")
   public void sentMessages() {
 
     directSentMessage();
@@ -30,7 +30,7 @@ public class ScheduledTasks {
   private void directSentMessage() {
 
     String[] routingKeys = {DirectBindingConfig.ROUTING_KEY_A};
-    LongStream.range(0, 5)
+    LongStream.range(0, 10)
         .forEach(t -> {
           String routingKey = routingKeys[random.nextInt(routingKeys.length)];
           String message = format("【这是DirectProducer发送的第%s个消息, 创建消息时间是%s, 路由键是%s】",

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @date 2019-01-22 23:49
  */
 @Component
-@RabbitListener(queues = {DirectQueueConfig.QUEUE_A})
+@RabbitListener(queues = {DirectQueueConfig.QUEUE_A}, concurrency = "1-5")
 public class DirectReceiver_B {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());

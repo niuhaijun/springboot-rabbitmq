@@ -44,37 +44,37 @@ public class DirectReceiver_C {
         connectionFactory);
     container.setQueues(queue);
     container.setExposeListenerChannel(true);
-    container.setConcurrentConsumers(3);
+    container.setPrefetchCount(prefetch);
+    container.setConcurrentConsumers(concurrency);
     container.setMaxConcurrentConsumers(maxConcurrency);
     container.setAcknowledgeMode(AcknowledgeMode.valueOf(acknowledgeMode));
-    container.setMessageListener(new ChannelAwareMessageListener() {
-      @Override
-      public void onMessage(Message message, Channel channel) throws Exception {
 
-        byte[] body = message.getBody();
-        long deliveryTag = message.getMessageProperties().getDeliveryTag();
+    ChannelAwareMessageListener messageListener = (Message message, Channel channel) -> {
+      byte[] body = message.getBody();
+      long deliveryTag = message.getMessageProperties().getDeliveryTag();
+      try {
+        //TODO 业务逻辑
+        log.info("消费 receive msg : " + new String(body));
+        // 消息的标识，false只确认当前一个消息收到，true确认所有consumer获得的消息
+        // channel.basicNack(deliveryTag, false, true);
+        channel.basicAck(deliveryTag, false); //手动确认确认消息成功消费
+      }
+      catch (Exception e) {
+        log.info("消费失败: " + new String(body));
+        // ack返回false，并重新回到队列
         try {
-          //业务逻辑
-          log.info("消费 receive msg : " + new String(body));
-          // 消息的标识，false只确认当前一个消息收到，true确认所有consumer获得的消息
-          // channel.basicNack(deliveryTag, false, true);
-          channel.basicAck(deliveryTag, false); //手动确认确认消息成功消费
-        }
-        catch (Exception e) {
-          log.info("消费失败: " + new String(body));
-          // ack返回false，并重新回到队列
-          try {
-            // 单个拒绝
-            channel.basicReject(deliveryTag, true);
-            // 批量拒绝
+          // 单个拒绝
+          channel.basicReject(deliveryTag, true);
+          // 批量拒绝
 //            channel.basicNack(deliveryTag, false, true);
-          }
-          catch (IOException e1) {
-            log.error("发生了异常, 异常信息如下{}", e.getMessage());
-          }
+        }
+        catch (IOException e1) {
+          log.error("发生了异常, 异常信息如下{}", e.getMessage());
         }
       }
-    });
+    };
+    container.setMessageListener(messageListener);
+
     return container;
   }
 
