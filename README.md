@@ -14,7 +14,7 @@
 
 
 ## 项目模块介绍
-* `fourexchange`：Direct Exchange交换器的用法、FanoutExchange用法、TopicExchange用法、HeadersExchange用法
+* `fourexchange`：分别演示Direct Exchange、Fanout Exchange、TopicExchange、HeadersExchange的用法
 * `multiplethread`：设置rabbitmq多线程处理消息
 * `delayqueue`：使用rabbitmq实现延迟队列
 * `messageacknowledge`：使用消息确认机制防止消息丢失
@@ -39,18 +39,17 @@
   * `alternate-exchange`: 指定交换器的备份交换器,消息被重新路由到备份交换器时的路由键和从生产者发出的路由键是一样的。
 
 
-
 ## 声明`Queue`参数详解
 * String `name`: 队列名称
 * boolean `durable`: 是否持久化：true表示持久化，持久化可以将队列存盘，在服务器启动的时候也不会丢失相关信息
 * boolean `exclusive`: 是否排他：true表示排他，如果一个队列被声明为排他队列，该队列仅对首次声明它的连接可见，并在连接断开时自动删除。
 * boolean `autoDelete`: 是否自动删除：true表示自动删除，自动删除的前提是至少还有消费者连接到这个队列上，以后所有与这个队列连接的消费者都断开。
 * Map<String, Object> `arguments`: 其他参数设置
-  * `x-dead-letter-exchange`：设置队列的`死信交换器`; 
-  * `x-dead-letter-routing-key`： 统一设置死信的`Routing Key`; 
+  * `x-dead-letter-exchange`：设置队列的`死信交换器`
+  * `x-dead-letter-routing-key`： 统一设置死信的`Routing Key` 
   * `x-message-ttl`: 设置消息的过期时间
   * `x-expire`：设置队列的过期时间，该参数可以控制队列被自动删除前处于`未使用状态`的时间，`未使用状态`包含以下几个条件
     * 队列上无消费者
-    * 队列没有被重新声明
+    - 队列没有被重新声明
     * 在过期时间段内，未调用过`Basic.Get`命令 
       
