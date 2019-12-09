@@ -28,6 +28,8 @@ public class RabbitMQConfig {
   private String password;
   @Value("${spring.rabbitmq.virtual-host}")
   private String virtualHost;
+  @Value("${spring.rabbitmq.connection-timeout}")
+  private Integer connectionTimeout;
 
 
   @Value("${spring.rabbitmq.publisher-confirms}")
@@ -52,6 +54,7 @@ public class RabbitMQConfig {
     connectionFactory.setUsername(username);
     connectionFactory.setPassword(password);
     connectionFactory.setVirtualHost(virtualHost);
+    connectionFactory.setConnectionTimeout(connectionTimeout);
 
     // 生产者消息确认设置
     connectionFactory.setPublisherConfirms(publisherConfirms);
