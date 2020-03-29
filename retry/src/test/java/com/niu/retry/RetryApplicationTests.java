@@ -18,7 +18,7 @@ public class RetryApplicationTests {
 	@Test
 	public void test() {
 
-		int id = 2;
+		int id = 4;
 		int money = 1000;
 
 		MqAccount mqAccount = new MqAccount(id, money);
