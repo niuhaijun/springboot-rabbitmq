@@ -1,4 +1,4 @@
-package com.niu.fourexchange;
+package com.niu;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -8,11 +8,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @Slf4j
-public class FourexchangeApplication {
+public class MultiplethreadApplication {
 
   public static void main(String[] args) {
 
-    SpringApplication.run(FourexchangeApplication.class, args);
+    SpringApplication.run(MultiplethreadApplication.class, args);
 
     // 防止JVM退出
     new Thread(() -> {

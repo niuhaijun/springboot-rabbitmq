@@ -8,7 +8,6 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.1.4.RELEASE</version>
-    <relativePath/>
   </parent>
 
   <groupId>com.niu</groupId>
@@ -26,15 +25,24 @@
   </properties>
 
   <modules>
-    <module>alternateexchange</module>
-    <module>delayqueue</module>
-    <module>fourexchange</module>
-    <module>messageacknowledge</module>
-    <module>multiplethread</module>
-    <module>retry</module>
+<!--    <module>alternateexchange</module>-->
+<!--    <module>delayqueue</module>-->
+<!--    <module>fourexchange</module>-->
+<!--    <module>messageacknowledge</module>-->
+<!--    <module>multiplethread</module>-->
+<!--    <module>retry</module>-->
   </modules>
 
   <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-amqp</artifactId>

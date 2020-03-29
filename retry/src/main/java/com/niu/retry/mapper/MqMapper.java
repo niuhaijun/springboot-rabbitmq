@@ -1,7 +1,7 @@
-package com.consumerretry.retry.mapper;
+package com.niu.retry.mapper;
 
-import com.consumerretry.retry.model.MgErrorMsg;
-import com.consumerretry.retry.model.MqAccount;
+import com.niu.retry.model.MgErrorMsg;
+import com.niu.retry.model.MqAccount;
 
 /**
  * @author niuhaijun

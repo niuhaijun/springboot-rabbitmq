@@ -1,4 +1,4 @@
-package com.consumerretry.retry.model;
+package com.niu.retry.model;
 
 /**
  * @author niuhaijun
