@@ -14,6 +14,7 @@
   <groupId>com.niu</groupId>
   <artifactId>springboot-rabbitmq</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
   <name>springboot-rabbitmq</name>
   <description>springboot整合rabbitmq</description>
@@ -30,6 +31,7 @@
     <module>fourexchange</module>
     <module>messageacknowledge</module>
     <module>multiplethread</module>
+    <module>retry</module>
   </modules>
 
   <dependencies>

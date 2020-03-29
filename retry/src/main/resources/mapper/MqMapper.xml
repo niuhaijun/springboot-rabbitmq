@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.consumerretry.retry.mapper.MqMapper">
+
+  <insert id="saveAccount" parameterType="com.consumerretry.retry.model.MqAccount">
+    insert into mq_account (id, money)
+    values (#{id}, #{money})
+  </insert>
+
+  <insert id="saveErrorMsg" parameterType="com.consumerretry.retry.model.MgErrorMsg">
+    insert into mg_error_msg (id, error_msg)
+    values (#{id}, #{errorMsg})
+  </insert>
+
+</mapper>
