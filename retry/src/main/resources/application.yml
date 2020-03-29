@@ -28,9 +28,9 @@ spring:
     listener:
       simple:
         ## \u5E76\u53D1\u8BBE\u7F6E
-        concurrency: 5
-        max-concurrency: 10
-        prefetch: 3
+        concurrency: 2
+        max-concurrency: 2
+        prefetch: 1
         ## \u6D88\u8D39\u8005\u91CD\u8BD5
         retry:
           enabled: true

@@ -30,10 +30,11 @@ public class MoneyServiceImpl implements MoneyService {
 		try {
 			mqMapper.saveAccount(account);
 			if (account.getId() % 2 == 0) {
-				int num = 1 / 0;
+//				int num = 1 / 0;
+				throw new OutOfMemoryError();
 			}
 		}
-		catch (Exception ex) {
+		catch (Exception | Error ex) {
 			errorService.save(account, ex);
 			throw ex;
 		}

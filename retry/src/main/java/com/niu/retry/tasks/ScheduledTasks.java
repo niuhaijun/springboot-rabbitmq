@@ -24,16 +24,13 @@ public class ScheduledTasks {
 	@Autowired
 	private Producer producer;
 
-	@Scheduled(cron = "0/5 * * * * ?")
+	@Scheduled(cron = "0/10 * * * * ?")
 	public void sentMessages() {
 
-		for (int i = 0; i < 5; i++) {
-			int id = count.incrementAndGet();
-			MqAccount account = new MqAccount(id, id);
+		int id = count.incrementAndGet();
+		MqAccount account = new MqAccount(id, id);
 
-			producer.sendMsg(gson.toJson(account), MqConfig.ROUTING_KEY);
-		}
-
+		producer.sendMsg(gson.toJson(account), MqConfig.ROUTING_KEY);
 
 	}
 

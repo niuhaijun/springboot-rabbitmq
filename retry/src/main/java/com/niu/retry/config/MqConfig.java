@@ -12,25 +12,25 @@ import org.springframework.context.annotation.Configuration;
  * @author niuhaijun
  * @date 2020-03-29 15:44
  * @version 1.0
- * @description: xxx
+ * @description: 设置自动删除是为了便于开发测试，每次启动都是初始环境
  */
 @Configuration
 public class MqConfig {
 
-	public static final String EXCHANGE_NAME = "exchange";
-	public static final String QUEUE_NAME = "queue";
+	public static final String EXCHANGE_NAME = "NiuExchange";
+	public static final String QUEUE_NAME = "NiuQueue";
 	public static final String ROUTING_KEY = "routing_key";
 
 	@Bean(name = EXCHANGE_NAME)
 	public DirectExchange directExchange() {
 
-		return new DirectExchange(EXCHANGE_NAME, true, false, null);
+		return new DirectExchange(EXCHANGE_NAME, true, true, null);
 	}
 
 	@Bean(name = QUEUE_NAME)
 	public Queue queueA() {
 
-		return new Queue(QUEUE_NAME, true, false, false, null);
+		return new Queue(QUEUE_NAME, true, false, true, null);
 	}
 
 	@Bean
