@@ -35,6 +35,7 @@ public class MoneyServiceImpl implements MoneyService {
 		}
 		catch (Exception ex) {
 			errorService.save(account, ex);
+			throw ex;
 		}
 	}
 }
